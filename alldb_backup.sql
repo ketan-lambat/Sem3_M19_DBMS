@@ -189,6 +189,78 @@ INSERT INTO `locations` VALUES (1000,'1297ViaColadiRie','989','Roma',' ','IT'),(
 UNLOCK TABLES;
 
 --
+-- Current Database: `log_table`
+--
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `log_table` /*!40100 DEFAULT CHARACTER SET latin1 */;
+
+USE `log_table`;
+
+--
+-- Table structure for table `student`
+--
+
+DROP TABLE IF EXISTS `student`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `student` (
+  `STUDENT_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(255) DEFAULT NULL,
+  `ST_CLASS` int(11) DEFAULT NULL,
+  PRIMARY KEY (`STUDENT_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `student`
+--
+
+LOCK TABLES `student` WRITE;
+/*!40000 ALTER TABLE `student` DISABLE KEYS */;
+INSERT INTO `student` VALUES (1,'Steven King',7),(2,'Neena Kochhar',8),(3,'Lex De Haan',8),(4,'Alexander Hunold',10);
+/*!40000 ALTER TABLE `student` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER student_mast_AUPD AFTER UPDATE ON student FOR EACH ROW BEGIN INSERT into student_log VALUES(user(), CONCAT("Update Student Record : ", OLD.NAME, " Previous Class-", OLD.ST_CLASS, " Present Class-", NEW.ST_CLASS));
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `student_log`
+--
+
+DROP TABLE IF EXISTS `student_log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `student_log` (
+  `user_id` varchar(255) DEFAULT NULL,
+  `description` text
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `student_log`
+--
+
+LOCK TABLES `student_log` WRITE;
+/*!40000 ALTER TABLE `student_log` DISABLE KEYS */;
+INSERT INTO `student_log` VALUES ('root@localhost','Update Student RecordSteven KingPrevious Class7Present Class8'),('root@localhost','Update Student RecordNeena KochharPrevious Class8Present Class9'),('root@localhost','Update Student RecordLex De HaanPrevious Class8Present Class9'),('root@localhost','Update Student RecordAlexander HunoldPrevious Class10Present Class11'),('root@localhost','Update Student Record : Steven King Previous Class-8 Present Class-7'),('root@localhost','Update Student Record : Neena Kochhar Previous Class-9 Present Class-8'),('root@localhost','Update Student Record : Lex De Haan Previous Class-9 Present Class-8'),('root@localhost','Update Student Record : Alexander Hunold Previous Class-11 Present Class-10');
+/*!40000 ALTER TABLE `student_log` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Current Database: `mysql`
 --
 
@@ -510,7 +582,7 @@ CREATE TABLE `innodb_index_stats` (
 
 LOCK TABLES `innodb_index_stats` WRITE;
 /*!40000 ALTER TABLE `innodb_index_stats` DISABLE KEYS */;
-INSERT INTO `innodb_index_stats` VALUES ('lab2Join','countries','PRIMARY','2019-08-28 04:20:37','n_diff_pfx01',25,1,'COUNTRY_ID'),('lab2Join','countries','PRIMARY','2019-08-28 04:20:37','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('lab2Join','countries','PRIMARY','2019-08-28 04:20:37','size',1,NULL,'Number of pages in the index'),('lab2Join','departments','PRIMARY','2019-08-28 03:48:39','n_diff_pfx01',27,1,'DEPARTMENT_ID'),('lab2Join','departments','PRIMARY','2019-08-28 03:48:39','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('lab2Join','departments','PRIMARY','2019-08-28 03:48:39','size',1,NULL,'Number of pages in the index'),('lab2Join','employees','PRIMARY','2019-08-28 04:07:08','n_diff_pfx01',107,1,'EMPLOYEE_ID'),('lab2Join','employees','PRIMARY','2019-08-28 04:07:08','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('lab2Join','employees','PRIMARY','2019-08-28 04:07:08','size',1,NULL,'Number of pages in the index'),('lab2Join','job_history','PRIMARY','2019-08-28 04:16:57','n_diff_pfx01',7,1,'EMPLOYEE_ID'),('lab2Join','job_history','PRIMARY','2019-08-28 04:16:57','n_diff_pfx02',10,1,'EMPLOYEE_ID,START_DATE'),('lab2Join','job_history','PRIMARY','2019-08-28 04:16:57','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('lab2Join','job_history','PRIMARY','2019-08-28 04:16:57','size',1,NULL,'Number of pages in the index'),('lab2Join','jobs','PRIMARY','2019-08-28 04:26:05','n_diff_pfx01',19,1,'JOB_ID'),('lab2Join','jobs','PRIMARY','2019-08-28 04:26:05','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('lab2Join','jobs','PRIMARY','2019-08-28 04:26:05','size',1,NULL,'Number of pages in the index'),('lab2Join','locations','PRIMARY','2019-08-28 04:11:03','n_diff_pfx01',23,1,'LOCATION_ID'),('lab2Join','locations','PRIMARY','2019-08-28 04:11:03','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('lab2Join','locations','PRIMARY','2019-08-28 04:11:03','size',1,NULL,'Number of pages in the index'),('mysql','gtid_executed','PRIMARY','2019-08-27 13:50:28','n_diff_pfx01',0,1,'source_uuid'),('mysql','gtid_executed','PRIMARY','2019-08-27 13:50:28','n_diff_pfx02',0,1,'source_uuid,interval_start'),('mysql','gtid_executed','PRIMARY','2019-08-27 13:50:28','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('mysql','gtid_executed','PRIMARY','2019-08-27 13:50:28','size',1,NULL,'Number of pages in the index'),('sys','sys_config','PRIMARY','2019-08-27 13:50:45','n_diff_pfx01',6,1,'variable'),('sys','sys_config','PRIMARY','2019-08-27 13:50:45','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('sys','sys_config','PRIMARY','2019-08-27 13:50:45','size',1,NULL,'Number of pages in the index'),('trigger_db','empDetails','GEN_CLUST_INDEX','2019-09-18 04:25:48','n_diff_pfx01',2,1,'DB_ROW_ID'),('trigger_db','empDetails','GEN_CLUST_INDEX','2019-09-18 04:25:48','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('trigger_db','empDetails','GEN_CLUST_INDEX','2019-09-18 04:25:48','size',1,NULL,'Number of pages in the index'),('trigger_db','logEmpDetails','GEN_CLUST_INDEX','2019-09-18 04:25:59','n_diff_pfx01',2,1,'DB_ROW_ID'),('trigger_db','logEmpDetails','GEN_CLUST_INDEX','2019-09-18 04:25:59','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('trigger_db','logEmpDetails','GEN_CLUST_INDEX','2019-09-18 04:25:59','size',1,NULL,'Number of pages in the index');
+INSERT INTO `innodb_index_stats` VALUES ('lab2Join','countries','PRIMARY','2019-08-28 04:20:37','n_diff_pfx01',25,1,'COUNTRY_ID'),('lab2Join','countries','PRIMARY','2019-08-28 04:20:37','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('lab2Join','countries','PRIMARY','2019-08-28 04:20:37','size',1,NULL,'Number of pages in the index'),('lab2Join','departments','PRIMARY','2019-08-28 03:48:39','n_diff_pfx01',27,1,'DEPARTMENT_ID'),('lab2Join','departments','PRIMARY','2019-08-28 03:48:39','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('lab2Join','departments','PRIMARY','2019-08-28 03:48:39','size',1,NULL,'Number of pages in the index'),('lab2Join','employees','PRIMARY','2019-08-28 04:07:08','n_diff_pfx01',107,1,'EMPLOYEE_ID'),('lab2Join','employees','PRIMARY','2019-08-28 04:07:08','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('lab2Join','employees','PRIMARY','2019-08-28 04:07:08','size',1,NULL,'Number of pages in the index'),('lab2Join','job_history','PRIMARY','2019-08-28 04:16:57','n_diff_pfx01',7,1,'EMPLOYEE_ID'),('lab2Join','job_history','PRIMARY','2019-08-28 04:16:57','n_diff_pfx02',10,1,'EMPLOYEE_ID,START_DATE'),('lab2Join','job_history','PRIMARY','2019-08-28 04:16:57','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('lab2Join','job_history','PRIMARY','2019-08-28 04:16:57','size',1,NULL,'Number of pages in the index'),('lab2Join','jobs','PRIMARY','2019-08-28 04:26:05','n_diff_pfx01',19,1,'JOB_ID'),('lab2Join','jobs','PRIMARY','2019-08-28 04:26:05','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('lab2Join','jobs','PRIMARY','2019-08-28 04:26:05','size',1,NULL,'Number of pages in the index'),('lab2Join','locations','PRIMARY','2019-08-28 04:11:03','n_diff_pfx01',23,1,'LOCATION_ID'),('lab2Join','locations','PRIMARY','2019-08-28 04:11:03','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('lab2Join','locations','PRIMARY','2019-08-28 04:11:03','size',1,NULL,'Number of pages in the index'),('log_table','student','PRIMARY','2019-09-25 04:06:10','n_diff_pfx01',4,1,'STUDENT_ID'),('log_table','student','PRIMARY','2019-09-25 04:06:10','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('log_table','student','PRIMARY','2019-09-25 04:06:10','size',1,NULL,'Number of pages in the index'),('log_table','student_log','GEN_CLUST_INDEX','2019-09-25 04:52:14','n_diff_pfx01',8,1,'DB_ROW_ID'),('log_table','student_log','GEN_CLUST_INDEX','2019-09-25 04:52:14','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('log_table','student_log','GEN_CLUST_INDEX','2019-09-25 04:52:14','size',1,NULL,'Number of pages in the index'),('mysql','gtid_executed','PRIMARY','2019-08-27 13:50:28','n_diff_pfx01',0,1,'source_uuid'),('mysql','gtid_executed','PRIMARY','2019-08-27 13:50:28','n_diff_pfx02',0,1,'source_uuid,interval_start'),('mysql','gtid_executed','PRIMARY','2019-08-27 13:50:28','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('mysql','gtid_executed','PRIMARY','2019-08-27 13:50:28','size',1,NULL,'Number of pages in the index'),('sys','sys_config','PRIMARY','2019-08-27 13:50:45','n_diff_pfx01',6,1,'variable'),('sys','sys_config','PRIMARY','2019-08-27 13:50:45','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('sys','sys_config','PRIMARY','2019-08-27 13:50:45','size',1,NULL,'Number of pages in the index'),('trigger_db','empDetails','GEN_CLUST_INDEX','2019-09-18 04:25:48','n_diff_pfx01',2,1,'DB_ROW_ID'),('trigger_db','empDetails','GEN_CLUST_INDEX','2019-09-18 04:25:48','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('trigger_db','empDetails','GEN_CLUST_INDEX','2019-09-18 04:25:48','size',1,NULL,'Number of pages in the index'),('trigger_db','logEmpDetails','GEN_CLUST_INDEX','2019-09-18 04:25:59','n_diff_pfx01',2,1,'DB_ROW_ID'),('trigger_db','logEmpDetails','GEN_CLUST_INDEX','2019-09-18 04:25:59','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('trigger_db','logEmpDetails','GEN_CLUST_INDEX','2019-09-18 04:25:59','size',1,NULL,'Number of pages in the index');
 /*!40000 ALTER TABLE `innodb_index_stats` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -538,7 +610,7 @@ CREATE TABLE `innodb_table_stats` (
 
 LOCK TABLES `innodb_table_stats` WRITE;
 /*!40000 ALTER TABLE `innodb_table_stats` DISABLE KEYS */;
-INSERT INTO `innodb_table_stats` VALUES ('lab2Join','countries','2019-08-28 04:20:37',25,1,0),('lab2Join','departments','2019-08-28 03:48:39',27,1,0),('lab2Join','employees','2019-08-28 04:07:08',107,1,0),('lab2Join','job_history','2019-08-28 04:16:57',10,1,0),('lab2Join','jobs','2019-08-28 04:26:05',19,1,0),('lab2Join','locations','2019-08-28 04:11:03',23,1,0),('mysql','gtid_executed','2019-08-27 13:50:28',0,1,0),('sys','sys_config','2019-08-27 13:50:45',6,1,0),('trigger_db','empDetails','2019-09-18 04:25:48',2,1,0),('trigger_db','logEmpDetails','2019-09-18 04:25:59',2,1,0);
+INSERT INTO `innodb_table_stats` VALUES ('lab2Join','countries','2019-08-28 04:20:37',25,1,0),('lab2Join','departments','2019-08-28 03:48:39',27,1,0),('lab2Join','employees','2019-08-28 04:07:08',107,1,0),('lab2Join','job_history','2019-08-28 04:16:57',10,1,0),('lab2Join','jobs','2019-08-28 04:26:05',19,1,0),('lab2Join','locations','2019-08-28 04:11:03',23,1,0),('log_table','student','2019-09-25 04:06:10',4,1,0),('log_table','student_log','2019-09-25 04:52:14',8,1,0),('mysql','gtid_executed','2019-08-27 13:50:28',0,1,0),('sys','sys_config','2019-08-27 13:50:45',6,1,0),('trigger_db','empDetails','2019-09-18 04:25:48',2,1,0),('trigger_db','logEmpDetails','2019-09-18 04:25:59',2,1,0);
 /*!40000 ALTER TABLE `innodb_table_stats` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1206,4 +1278,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-09-18 10:26:22
+-- Dump completed on 2019-09-25 10:50:06

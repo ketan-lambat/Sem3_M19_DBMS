@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Add Student</title>
+{% endblock %}
+
+{% block body %}
+<h1>Academic Records</h1>
+
+<form method="POST" action="/add">
+    Roll No : <input type="text" name="rollno" id="rollno">
+    <br><br>
+    Name : <input type="text" name="name" id="name">
+    <br> <br>
+    Email : <input type="email" name="email" id="email">
+    <br><br>
+    Contact No. : <input type="tel" name="contact" id="contact">
+    <br><br>
+    <input type="radio" name="sex" value="male">Male
+    <input type="radio" name="sex" value="female">Female <br><br>
+    <input type="radio" name="branch" value="cse">CSE
+    <input type="radio" name="branch" value="ece">ECE 
+    <select name="sem">
+        <option value="sem1">1 Sem</option>
+        <option value="sem2">2 Sem</option>
+        <option value="sem3">3 Sem</option>
+        <option value="sem4">4 Sem</option>
+        <option value="sem5">5 Sem</option>
+        <option value="sem6">6 Sem</option>
+        <option value="sem7">7 Sem</option>
+        <option value="sem8">8 Sem</option>
+    </select>
+    <br><br>
+    <input type="submit" value="Submit">
+</form>
+
+{% endblock %}

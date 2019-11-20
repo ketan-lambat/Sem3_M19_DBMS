@@ -40,7 +40,7 @@ def add():
             sem = studentDetails['sem']
 
             cur = mysql.connection.cursor()
-            cur.execute("INSERT INTO students VALUES(%s, %s, %s, %s, %s, %s, %s)",
+            cur.execute("INSERT INTO students VALUES(%s, %s, %s, %s, %s, %s, %s) ",
                         (rollno, name, email, contact, sex, branch, sem))
             mysql.connection.commit()
             cur.close()
@@ -58,7 +58,7 @@ def delete(id):
         cur = mysql.connection.cursor()
         cur.execute("DELETE FROM students WHERE rollno=%s", [id])
         mysql.connection.commit()
-        #flash('%s Student Deleted Successfully', (id))
+        flash('Student Deleted Successfully')
         return redirect('/')
     except Exception as e:
         print(e)
@@ -84,7 +84,6 @@ def edit(id):
 
 @app.route('/update/<string:id>', methods=['POST', 'GET'])
 def update(id):
-
     try:
         if request.method == 'POST':
             studentDetails = dict(request.form)

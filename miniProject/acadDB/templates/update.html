@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Add Student</title>
+{% endblock %}
+
+{% block body %}
+<h1>Add Student Record</h1>
+
+<form method="POST" action="/update/{{ student[0] }}">
+    Roll No : <input type="text" name="rollno" id="rollno" value="{{ student[0] }}" disabled>
+    <br><br>
+    Name : <input type="text" name="name" id="name" value=" {{ student[1] }}">
+    <br> <br>
+    Email : <input type="email" name="email" id="email" disabled value=" {{ student[2] }}">
+    <br><br>
+    Contact No. : <input type="tel" name="contact" id="contact" value="{{ student[3] }}">
+    <br><br>
+    {% if student[4] == 'male' -%}
+        <input type="radio" name="sex" value="male" checked>Male
+        <input type="radio" name="sex" value="female">Female <br><br>
+    {% else -%}
+        <input type="radio" name="sex" value="male">Male
+        <input type="radio" name="sex" value="female" checked>Female <br><br>
+    {% endif %}
+    
+    {% if student[5] == 'cse' -%}
+    <input type="radio" name="branch" value="cse" checked>CSE
+    <input type="radio" name="branch" value="ece">ECE 
+    {% else %}
+    <input type="radio" name="branch" value="cse">CSE
+    <input type="radio" name="branch" value="ece" checked>ECE 
+    {% endif %}
+
+    <select name="sem" >
+        <option value="sem1">1 Sem</option>
+        <option value="sem2">2 Sem</option>
+        <option value="sem3">3 Sem</option>
+        <option value="sem4">4 Sem</option>
+        <option value="sem5">5 Sem</option>
+        <option value="sem6">6 Sem</option>
+        <option value="sem7">7 Sem</option>
+        <option value="sem8">8 Sem</option>
+    </select>
+    <br><br>
+    <input type="submit" value="Update">
+</form>
+
+{% endblock %}
